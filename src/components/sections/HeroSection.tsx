@@ -3,8 +3,17 @@ import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import TypewriterText from "@/components/ui/TypewriterText";
 import profileAvatar from "@/assets/profile-avatar.jpg";
+import profileAvatar2 from "@/assets/profile-avatar2.png";
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
 
 const HeroSection = () => {
+  const [isAvatarOpen, setIsAvatarOpen] = useState(false);
   const roles = [
     "Full-Stack Developer",
     "Web3 Enthusiast",
@@ -55,7 +64,7 @@ const HeroSection = () => {
       </div>
 
       {/* Grid Pattern Overlay */}
-      <div className="pt-20 absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.1)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.1)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
 
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto text-center">
@@ -64,9 +73,9 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-            className="mb-8 flex justify-center"
+            className="mt-20 mb-8 flex justify-center"
           >
-            <div className="relative">
+            <div className="relative cursor-pointer" onClick={() => setIsAvatarOpen(true)}>
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-accent to-primary animate-pulse-glow blur-xl opacity-50" />
               <motion.div
                 className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-primary/50 glow-primary"
@@ -74,7 +83,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.3 }}
               >
                 <img
-                  src={profileAvatar}
+                  src={profileAvatar2}
                   alt="Tahir Mustafa"
                   className="w-full h-full object-cover"
                 />
@@ -89,22 +98,36 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
+          {/* Avatar Dialog */}
+          <Dialog open={isAvatarOpen} onOpenChange={setIsAvatarOpen}>
+            <DialogContent className="max-w-2xl">
+              <DialogTitle className="sr-only">Profile Picture</DialogTitle>
+              <div className="relative w-full aspect-square">
+                <img
+                  src={profileAvatar2}
+                  alt="Tahir Mustafa - Full Size"
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+            </DialogContent>
+          </Dialog>
+
           {/* Greeting */}
-          <motion.p
+          {/* <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-muted-foreground mb-4 font-mono text-sm tracking-wider"
           >
             {'<Hello World />'}
-          </motion.p>
+          </motion.p> */}
 
           {/* Name */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
           >
             <span className="text-foreground">I'm </span>
             <span className="gradient-text text-glow">Tahir Mustafa</span>
@@ -115,7 +138,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 h-12"
+            className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-8 h-12"
           >
             <TypewriterText
               texts={roles}
@@ -170,7 +193,7 @@ const HeroSection = () => {
           </motion.div>
 
           {/* Social Links */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -194,27 +217,27 @@ const HeroSection = () => {
                 <Icon className="w-5 h-5" />
               </motion.a>
             ))}
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.6 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-      >
-        <motion.a
-          href="#about"
-          className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <span className="text-xs font-mono tracking-wider">SCROLL</span>
-          <ArrowDown className="w-4 h-4" />
-        </motion.a>
-      </motion.div>
+      {/* Scroll Indicator
+      // <motion.div
+      //   initial={{ opacity: 0 }}
+      //   animate={{ opacity: 1 }}
+      //   transition={{ delay: 1, duration: 0.6 }}
+      //   className="absolute bottom-10 left-1/2 -translate-x-1/2"
+      // >
+      //   <motion.a
+      //     href="#about"
+      //     className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+      //     animate={{ y: [0, 8, 0] }}
+      //     transition={{ duration: 2, repeat: Infinity }}
+      //   >
+      //     <span className="text-xs font-mono tracking-wider">SCROLL</span>
+      //     <ArrowDown className="w-4 h-4" />
+      //   </motion.a>
+      // </motion.div> */}
     </section>
   );
 };
