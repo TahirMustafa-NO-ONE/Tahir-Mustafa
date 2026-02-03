@@ -79,7 +79,7 @@ const HeroSection = () => {
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-accent to-primary animate-pulse-glow blur-xl opacity-50" />
               <motion.div
                 className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-primary/50 glow-primary"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.5 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
@@ -89,12 +89,12 @@ const HeroSection = () => {
                 />
               </motion.div>
               {/* Status indicator */}
-              <motion.div
+              {/* <motion.div
                 className="absolute bottom-2 right-2 w-5 h-5 rounded-full bg-accent border-4 border-background"
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
                 title="Available for opportunities"
-              />
+              /> */}
             </div>
           </motion.div>
 

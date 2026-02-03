@@ -12,8 +12,9 @@ const projects = [
     tech: ["Solidity", "Hardhat", "Next.js 15", "React 19", "TypeScript", "Tailwind", "Viem/Web3"],
     icon: Blocks,
     featured: true,
+    comingSoon: true,
     links: {
-      github: "#",
+      github: "https://github.com/fa22-bse-044/libera",
       live: "#",
     },
   },
@@ -25,9 +26,10 @@ const projects = [
     tech: ["TypeScript", "React", "Node.js", "Express", "Strapi", "Tailwind CSS"],
     icon: Utensils,
     featured: true,
+    comingSoon: false,
     links: {
-      github: "#",
-      live: "#",
+      github: "https://github.com/TahirMustafa-NO-ONE/semester-project-176-v2",
+      live: "https://semester-project-176-v2.vercel.app/",
     },
   },
   {
@@ -38,8 +40,9 @@ const projects = [
     tech: ["Flutter", "Dart", "Firebase", "REST APIs"],
     icon: BookOpen,
     featured: true,
+    comingSoon: true,
     links: {
-      github: "#",
+      github: "https://github.com/TahirMustafa-NO-ONE/moreat_recipe_book",
       live: "#",
     },
   },
@@ -153,16 +156,27 @@ const ProjectsSection = () => {
                             Code
                           </a>
                         </Button>
-                        <Button
-                          size="sm"
-                          className="gap-2"
-                          asChild
-                        >
-                          <a href={project.links.live} target="_blank" rel="noopener noreferrer">
+                        {project.comingSoon ? (
+                          <Button
+                            size="sm"
+                            className="gap-2"
+                            disabled
+                          >
                             <ExternalLink className="w-4 h-4" />
-                            Live Demo
-                          </a>
-                        </Button>
+                            Coming Soon
+                          </Button>
+                        ) : (
+                          <Button
+                            size="sm"
+                            className="gap-2"
+                            asChild
+                          >
+                            <a href={project.links.live} target="_blank" rel="noopener noreferrer">
+                              <ExternalLink className="w-4 h-4" />
+                              Live Demo
+                            </a>
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </div>
