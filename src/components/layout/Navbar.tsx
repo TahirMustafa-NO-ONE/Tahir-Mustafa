@@ -23,6 +23,19 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    // Small delay to allow menu to close before scrolling
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -104,7 +117,7 @@ const Navbar = () => {
                   <a
                     href={link.href}
                     className="block py-2 text-lg font-medium text-foreground hover:text-primary transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => handleNavClick(e, link.href)}
                   >
                     {link.name}
                   </a>
@@ -116,7 +129,7 @@ const Navbar = () => {
                 transition={{ delay: navLinks.length * 0.05 }}
               >
                 <Button asChild className="w-full mt-2">
-                  <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
+                  <a href="#contact" onClick={(e) => handleNavClick(e, "#contact")}>
                     Let's Talk
                   </a>
                 </Button>

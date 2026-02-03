@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import TypewriterText from "@/components/ui/TypewriterText";
 import profileAvatar from "@/assets/profile-avatar.jpg";
 import profileAvatar2 from "@/assets/profile-avatar2.png";
+import resume from "@/assets/Tahir-Software-Engineer-CV.pdf";
 import { useState } from "react";
 import {
   Dialog,
@@ -188,7 +189,9 @@ const HeroSection = () => {
               variant="outline"
               asChild
             >
-              <a href="#contact">Contact Me</a>
+              <a href={resume} download="Tahir_Mustafa_Resume.pdf">
+                Download Resume
+              </a>
             </Button>
           </motion.div>
 
