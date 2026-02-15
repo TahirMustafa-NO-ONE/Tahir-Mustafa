@@ -15,6 +15,7 @@ import {
 
 const HeroSection = () => {
   const [isAvatarOpen, setIsAvatarOpen] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
   const roles = [
     "Full-Stack Developer",
     "Web3 Enthusiast",
@@ -204,14 +205,66 @@ const HeroSection = () => {
               <div className="relative cursor-pointer" onClick={() => setIsAvatarOpen(true)}>
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-accent to-primary animate-pulse-glow blur-xl opacity-50" />
                 <motion.div
-                  className="relative w-[300px] h-[300px] sm:w-[350px] sm:h-[350px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px] rounded-full overflow-hidden border-4 border-primary/50 glow-primary"
+                  className="relative w-[300px] h-[300px] sm:w-[350px] sm:h-[350px] lg:w-[400px] lg:h-[400px] xl:w-[450px] xl:h-[450px] rounded-full overflow-hidden border-4 border-primary/50 glow-primary bg-background/50"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                 >
+                  {/* Ripple Loading Animation */}
+                  {!isImageLoaded && (
+                    <div className="absolute inset-0 z-10 bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 flex items-center justify-center">
+                      <div className="relative w-24 h-24">
+                        <motion.div
+                          className="absolute inset-0 rounded-full border-4 border-primary/50"
+                          animate={{
+                            scale: [0.5, 2, 0.5],
+                            opacity: [0.8, 0, 0.8],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeOut",
+                          }}
+                        />
+                        <motion.div
+                          className="absolute inset-0 rounded-full border-4 border-accent/50"
+                          animate={{
+                            scale: [0.5, 2, 0.5],
+                            opacity: [0.8, 0, 0.8],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeOut",
+                            delay: 0.4,
+                          }}
+                        />
+                        <motion.div
+                          className="absolute inset-0 rounded-full border-4 border-primary/30"
+                          animate={{
+                            scale: [0.5, 2, 0.5],
+                            opacity: [0.8, 0, 0.8],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeOut",
+                            delay: 0.8,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Image */}
                   <img
                     src={profileAvatar2}
                     alt="Tahir Mustafa"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover relative z-0"
+                    onLoad={() => {
+                      // Simulate loading delay for testing (remove in production)
+                      setTimeout(() => setIsImageLoaded(true), 1000);
+                    }}
+                    style={{ opacity: isImageLoaded ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}
                   />
                 </motion.div>
                 {/* Status indicator */}
