@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import SplashCursor from "@/components/ui/SplashCursor";
+import ClickSpark from "@/components/ClickSpark";
 
 const queryClient = new QueryClient();
 
@@ -22,13 +23,20 @@ const App = () => {
         <Toaster />
         <Sonner />
         <SplashCursor />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <ClickSpark
+          sparkSize={12}
+          sparkRadius={20}
+          sparkCount={10}
+          duration={500}
+        >
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </ClickSpark>
       </TooltipProvider>
     </QueryClientProvider>
   );
