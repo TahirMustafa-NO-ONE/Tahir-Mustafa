@@ -42,7 +42,7 @@ const projects = [
     featured: true,
     comingSoon: true,
     links: {
-      github: "https://github.com/TahirMustafa-NO-ONE/moreat_recipe_book",
+      github: "https://github.com/TahirMustafa-NO-ONE/recipe-app",
       live: "#",
     },
   },
